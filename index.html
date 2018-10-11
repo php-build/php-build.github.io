@@ -60,11 +60,25 @@ php-build [-i &lt;environment_or_inifile&gt;] &lt;definition&gt; &lt;prefix&gt;
 
 <p>Before you can build PHP you will need all necessary build dependencies. </p>
 
-<p>If you happen to use Ubuntu then this is done with two commands:</p>
+<p>If you use <b>Ubuntu</b>:</p>
 <pre><code>% sudo apt-get install libmcrypt-dev libreadline-dev
 </code></pre>
 <pre><code>% sudo apt-get build-dep php5-cli
 </code></pre>
+
+<p>If you use <b>macOS</b>:</p>
+<ol>
+  <li><p>Install <a href="https://brew.sh/">Homebrew</a></p></li>
+  <li>
+    <p>Install Hombrew packages:</p>
+    <pre><code>% brew install pkg-config autoconf openssl icu4c re2c bison libzip mcrypt</code></pre>
+  </li>
+  <li>
+    <p>Specify the Homebrew library places in configure options:</p>
+    <pre><code>env "PATH=/usr/local/opt/bison/bin:$PATH" "PHP_BUILD_CONFIGURE_OPTS=--with-openssl=$(brew --prefix openssl) --with-libzip" phpenv install 7.0.30</code></pre>
+  </li>
+</ol>
+
 
 <p>Then run this to install PHP 5.5.9 in development configuration:</p>
 
